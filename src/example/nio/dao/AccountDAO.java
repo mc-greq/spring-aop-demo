@@ -1,5 +1,6 @@
 package example.nio.dao;
 
+import jdk.jfr.Label;
 import org.springframework.stereotype.Component;
 
 @Component
