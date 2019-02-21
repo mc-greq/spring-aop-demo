@@ -2,6 +2,7 @@ package example.nio;
 
 
 import example.nio.dao.AccountDAO;
+import example.nio.dao.MembershipDAO;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringAopRun {
@@ -14,9 +15,11 @@ public class SpringAopRun {
 
         // get the bean from container
         AccountDAO accountDAO = context.getBean(AccountDAO.class);
+        MembershipDAO membershipDAO = context.getBean(MembershipDAO.class);
 
         // call the business method
         accountDAO.addAccount();
+        membershipDAO.addAccount();
 
         // close the context
         context.close();

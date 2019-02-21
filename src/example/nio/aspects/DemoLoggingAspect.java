@@ -11,7 +11,8 @@ public class DemoLoggingAspect {
     // this is a collection of our ADVICES
 
     // start with @Before advice
-    @Before("execution(public void addAccount())")
+//    @Before("execution(void addAccount())")
+    @Before("execution(void addAccount())")
     public void beforeAddAccountAdvice(){
         System.out.println("\n====> Executing @Before advice on addAccount()");
 
