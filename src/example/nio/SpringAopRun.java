@@ -10,7 +10,7 @@ public class SpringAopRun {
 
         // read spring configuration java class
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(DemoConfig.class);
+                new AnnotationConfigApplicationContext(DemoConfig.class, MyLoggerConfig.class);
 
         // get the bean from container
         AccountDAO accountDAO = context.getBean(AccountDAO.class);
