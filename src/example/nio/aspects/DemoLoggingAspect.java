@@ -18,4 +18,12 @@ public class DemoLoggingAspect {
 
     }
 
+    @Before("execution(void add*())")
+    public void beforeAddAccountAdviceWildcard(){
+        System.out.println("\n====> Executing @Before advice with wildcard on addAccount()");
+
+    }
+
+
+
 }
