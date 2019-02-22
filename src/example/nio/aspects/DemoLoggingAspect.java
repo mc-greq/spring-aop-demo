@@ -15,10 +15,16 @@ public class DemoLoggingAspect {
     @Pointcut("execution(void example.nio.dao.AccountDAO.addAccount())")
     private void accountDaoAddAccount(){}
 
+    @Pointcut("execution(* get*())")
+    private void allGetters(){}
+
+    @Pointcut("execution(void set*(..))")
+    private void allSetters(){}
+
     // start with @Before advice
 //    @Before("execution(void addAccount())")
-    // here we are using our pointcut declaration
-    @Before("accountDaoAddAccount()")
+    // here we are using our pointcut declarations and excluding one of them
+    @Before("accountDaoAddAccount() && !allGetters()")
     public void beforeAddAccountAdvice(){
         System.out.println("\n====> Executing @Before advice on addAccount()");
 
