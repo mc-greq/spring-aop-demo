@@ -2,6 +2,7 @@ package example.nio.aspects;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -10,12 +11,22 @@ public class DemoLoggingAspect {
 
     // this is a collection of our ADVICES
 
+    // this is how to declare pointcuts
+    @Pointcut("execution(void example.nio.dao.AccountDAO.addAccount())")
+    private void accountDaoAddAccount(){}
+
     // start with @Before advice
 //    @Before("execution(void addAccount())")
-    @Before("execution(void example.nio.dao.AccountDAO.addAccount())")
+    // here we are using our pointcut declaration
+    @Before("accountDaoAddAccount()")
     public void beforeAddAccountAdvice(){
         System.out.println("\n====> Executing @Before advice on addAccount()");
 
+    }
+
+    @Before("accountDaoAddAccount()")
+    public void beforeAddAccountAdviceNo2(){
+        System.out.println("====> Another advice to demostrate reusing pointcut");
     }
 
     @Before("execution(void add*())")
