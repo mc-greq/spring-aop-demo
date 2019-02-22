@@ -29,6 +29,22 @@ public class DemoLoggingAspect {
         System.out.println("\n====> Executing @Before advice with wildcard matching on return type on add*()");
     }
 
+    @Before("execution(void *())")
+    public void beforeAddAccountAdviceVoidType(){
+        System.out.println("\n====> Executing @Before advice matching on void functions");
+    }
+
+    @Before("execution(* add*(example.nio.Account))")
+    public void beforeAddAccountWithParam(){
+        System.out.println("\n====> Executing @Before advice matchin on parameter Account");
+    }
+
+    @Before("execution(void example.nio.dao.AccountDAO.addAmount(*)) && args(amount)")
+    public void beforeAddAmountModifyAmount(int amount){
+        System.out.println("\n====> Executing @Before advice intercepting method arguments and doing work on them: " +
+                "\n initial amount: " + amount + ", modified amount: " + (amount + 10));
+    }
+
 
 
 }

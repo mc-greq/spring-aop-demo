@@ -16,9 +16,14 @@ public class SpringAopRun {
         AccountDAO accountDAO = context.getBean(AccountDAO.class);
         MembershipDAO membershipDAO = context.getBean(MembershipDAO.class);
 
+        Account myAccount = new Account();
+        accountDAO.addAccount(myAccount);
+
         // call the business method
         accountDAO.addAccount();
         membershipDAO.addAccount();
+
+        accountDAO.addAmount(10);
 
         // close the context
         context.close();
