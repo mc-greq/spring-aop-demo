@@ -15,9 +15,11 @@ public class DemoLoggingAspect {
     @Pointcut("execution(void example.nio.dao.AccountDAO.addAccount())")
     private void accountDaoAddAccount(){}
 
+    // pointcut for all getters
     @Pointcut("execution(* get*())")
     private void allGetters(){}
 
+    // pointcut for all setters
     @Pointcut("execution(void set*(..))")
     private void allSetters(){}
 
@@ -30,7 +32,7 @@ public class DemoLoggingAspect {
 
     }
 
-    @Before("accountDaoAddAccount()")
+    @Before("accountDaoAddAccount() && !allSetters()")
     public void beforeAddAccountAdviceNo2(){
         System.out.println("====> Another advice to demostrate reusing pointcut");
     }
